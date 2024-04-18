@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      lucide:
+        specifier: ^0.371.0
+        version: 0.371.0
       next:
         specifier: 14.2.1
         version: 14.2.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -22,10 +25,10 @@ importers:
         specifier: ^20
         version: 20.12.7
       '@types/react':
-        specifier: ^18
+        specifier: ^18.2.79
         version: 18.2.79
       '@types/react-dom':
-        specifier: ^18
+        specifier: ^18.2.25
         version: 18.2.25
       eslint:
         specifier: ^8
@@ -979,6 +982,9 @@ packages:
   lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
+
+  lucide@0.371.0:
+    resolution: {integrity: sha512-S0XDtPNaZ2nlxk3SZ7zltfovEEXDpSWNGlk58+7M+Pl9t9p4hc0x8JN4cIAiJImxNau7DHc5dMCEmEFGrvRxFg==}
 
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -2607,6 +2613,8 @@ snapshots:
   lru-cache@6.0.0:
     dependencies:
       yallist: 4.0.0
+
+  lucide@0.371.0: {}
 
   merge2@1.4.1: {}
 
