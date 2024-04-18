@@ -7,7 +7,4 @@ module.exports = {
     "next/core-web-vitals",
   ],
   plugins: ["@typescript-eslint", "prettier"],
-  rules: {
-    "prettier/prettier": "error",
-  },
 };
