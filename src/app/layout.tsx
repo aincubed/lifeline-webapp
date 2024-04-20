@@ -1,3 +1,4 @@
+import SideNav from "@/components/molecules/SideNav/SideNav";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="flex h-screen w-full bg-white">
+          <SideNav />
+          <div className="ml-64 flex h-full w-full flex-col">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
