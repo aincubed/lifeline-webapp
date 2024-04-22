@@ -29,7 +29,7 @@ export const items: ISideNavItem[] = [
 
 export default function SideNav() {
   return (
-    <div className="fixed left-0 top-0 z-10 flex h-screen w-64 flex-col bg-gray-300">
+    <div className="fixed left-0 top-0 z-10 flex h-screen w-64 flex-col bg-[#DE1517] text-white">
       <div className="flex flex-grow flex-col">
         <div className="flex h-48 flex-col justify-center text-center">
           <h1 className="text-4xl font-bold">LIFELINE</h1>

@@ -22,7 +22,7 @@ export default function SideNavItem({ item }: { item: ISideNavItem }) {
 
   return (
     <div
-      className={`flex cursor-pointer items-center space-x-5 pl-7 hover:bg-white ${isActive && "bg-white"}`}
+      className={`flex cursor-pointer items-center space-x-5 pl-7 hover:bg-white hover:text-black ${isActive ? "bg-white text-black" : ""}`}
       onClick={onClick}
     >
       <Icon />
