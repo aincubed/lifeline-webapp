@@ -4,7 +4,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
+  AccordionTrigger
 } from "@/components/ui/accordion";
 
 export default function page() {
@@ -79,7 +79,7 @@ export default function page() {
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-lg font-semibold">
-              Using the machine
+              Using The Machine
             </AccordionTrigger>
             <AccordionContent>
               <div className="mb-4 font-light">
@@ -145,7 +145,7 @@ export default function page() {
                       <li>
                         Once the machine stopped mixing, click{" "}
                         <span className="font-bold">Open Camera</span> to
-                        initiate the machine's camera.
+                        initiate the machine&apos;s camera.
                       </li>
                       <li>
                         Click <span className="font-bold">Capture</span> to take
@@ -165,7 +165,10 @@ export default function page() {
                   <AccordionContent>
                     <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
-                        Once the analysis is complete and the blood group is determined click the <span className="font-bold">Save</span> button to add the donor's information to the database.
+                        Once the analysis is complete and the blood group is
+                        determined click the{" "}
+                        <span className="font-bold">Save</span> button to add
+                        the donor&apos;s information to the database.
                       </li>
                     </ul>
                   </AccordionContent>
@@ -211,7 +214,7 @@ export default function page() {
                     <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Periodically calibrate the machine according to the
-                        manufacturer's instructions to maintain accuracy.
+                        manufacturer&apos;s instructions to maintain accuracy.
                       </li>
                     </ul>
                   </AccordionContent>
@@ -269,7 +272,7 @@ export default function page() {
 
       <div className="mt-10">
         <p className="text-xs font-light italic">
-          Thank you for choosing Lifeline's Blood Grouping Machine. If you have
+          Thank you for choosing Lifeline&apos;s Blood Grouping Machine. If you have
           any questions or need further assistance, please contact Lifeline
           Technologies at{" "}
           <a href="#" className="underline">
