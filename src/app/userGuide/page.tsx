@@ -1,7 +1,3 @@
-import {
-  Card,
-  CardContent
-} from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
   import {
@@ -16,7 +12,7 @@ export default function page() {
   return (
 
     <div className ="m-16">
-      <h1 className="font-extrabold text-3xl">Lifeline User Guide</h1>
+      <h1 className="font-extrabold text-3xl">Lifeline User</h1>
         <Separator className="mt-5" />
         <p className="pt-5 font-light text-justify text-base">Welcome to the Blood Grouping Machine by Lifeline! This user guide will walk you through the process of using the machine to determine the blood group of a blood sample using advanced AI technology. Please follow these instructions carefully for accurate results.</p>
 
