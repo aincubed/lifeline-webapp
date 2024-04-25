@@ -1,11 +1,10 @@
+// Importing necessary components and utilities
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"; // Assuming lucide-react is an icon library
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+// Importing Checkbox component for row selection
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
@@ -16,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+// Defining the shape of data for our table
 export type DonorInfo = {
   id: string;
   lastName: string;
@@ -24,7 +24,9 @@ export type DonorInfo = {
   acquisitionDate: Date;
 };
 
+// Definition of columns for the table
 export const columns: ColumnDef<DonorInfo>[] = [
+  // Column for row selection
   {
     id: "select",
     header: ({ table }) => (
@@ -46,9 +48,10 @@ export const columns: ColumnDef<DonorInfo>[] = [
         aria-label="Select row"
       />
     ),
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: false, // Disabling sorting for this column
+    enableHiding: false, // Disabling hiding for this column
   },
+  // Columns for donor information
   {
     accessorKey: "lastName",
     header: ({ column }) => {
@@ -77,7 +80,6 @@ export const columns: ColumnDef<DonorInfo>[] = [
       );
     },
   },
-
   {
     accessorKey: "bloodGroup",
     header: ({ column }) => {
@@ -106,6 +108,7 @@ export const columns: ColumnDef<DonorInfo>[] = [
       );
     },
   },
+  // Column for actions
   {
     id: "actions",
     cell: ({ row }) => {
