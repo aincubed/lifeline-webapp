@@ -45,7 +45,7 @@ export default function SideNav() {
         <ul className="mb-[30px] ml-[16px] flex flex-col space-y-5 text-lg font-semibold">
           <li className="flex items-center space-x-5">
             <BadgeInfo />
-            <Link href="/">Help?</Link>
+            <Link href="/userGuide">Help?</Link>
           </li>
           <li className="flex items-center space-x-5">
             <LogOut />
