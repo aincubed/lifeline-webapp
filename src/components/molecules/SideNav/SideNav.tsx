@@ -1,57 +1,29 @@
-"use client";
-import { BadgeInfo, Home, LogOut, LucideIcon, Plus, Users } from "lucide-react";
+import NavLinks from "@/lib/constants/nav-links";
+import { BadgeHelp } from "lucide-react";
 import Link from "next/link";
-import SideNavItem from "./SideNavItem";
-
-interface ISideNavItem {
-  name: string;
-  path: string;
-  icon: LucideIcon;
-}
-
-export const items: ISideNavItem[] = [
-  {
-    name: "Dashboard",
-    path: "/dashBoard",
-    icon: Home,
-  },
-  {
-    name: "Add donor",
-    path: "/addDonor",
-    icon: Plus,
-  },
-  {
-    name: "Donor List",
-    path: "/donorList",
-    icon: Users,
-  },
-];
 
 export default function SideNav() {
   return (
-    <div className="fixed left-0 top-0 z-10 flex h-screen w-64 flex-col bg-[#DE1517] text-white">
-      <div className="flex flex-grow flex-col">
-        <div className="flex h-48 flex-col justify-center text-center">
-          <h1 className="text-4xl font-bold">LIFELINE</h1>
-          <p className="text-lg">Donor List Repository</p>
+    <div className="flex h-full flex-col px-3 py-4 md:px-2">
+      <Link
+        className="mb-2 flex h-40 items-end justify-start bg-red rounded-md p-4 md:h-30"
+        href="/Dashboard"
+      >
+        <div className="w-50 text-white md:w-50">
+          <h1 className="text-white text-[2.4rem] font-bold -mb-3">LIFELINE</h1>
+          <h2>Donor List Repository</h2>
         </div>
-        <div className="flex flex-grow flex-col">
-          {items.map((item) => (
-            <SideNavItem key={item.path} item={item} />
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col space-y-10 pl-3">
-        <ul className="mb-[30px] ml-[16px] flex flex-col space-y-5 text-lg font-semibold">
-          <li className="flex items-center space-x-5">
-            <BadgeInfo />
-            <Link href="/userGuide">Help?</Link>
-          </li>
-          <li className="flex items-center space-x-5">
-            <LogOut />
-            <Link href="/">Sign out</Link>
-          </li>
-        </ul>
+      </Link>
+      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
+        <NavLinks />
+        <div className="hidden h-auto w-full grow rounded-md bg-lightGrey md:block"></div>
+        <Link
+          className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-red hover:bg-opacity-10	hover:text-red md:flex-none md:justify-start md:p-2 md:px-3"
+          href="/UserGuide"
+        >
+          <BadgeHelp />
+          <div className="hidden md:block">User Guide</div>
+        </Link>
       </div>
     </div>
   );
