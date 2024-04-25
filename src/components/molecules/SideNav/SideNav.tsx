@@ -6,11 +6,11 @@ export default function SideNav() {
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <Link
-        className="mb-2 flex h-40 items-end justify-start bg-red rounded-md p-4 md:h-30"
+        className="md:h-30 mb-2 flex h-40 items-end justify-start rounded-md bg-red p-4"
         href="/Dashboard"
       >
-        <div className="w-50 text-white md:w-50">
-          <h1 className="text-white text-[2.4rem] font-bold -mb-3">LIFELINE</h1>
+        <div className="w-50 md:w-50 text-white">
+          <h1 className="-mb-3 text-[2.4rem] font-bold text-white">LIFELINE</h1>
           <h2>Donor List Repository</h2>
         </div>
       </Link>
