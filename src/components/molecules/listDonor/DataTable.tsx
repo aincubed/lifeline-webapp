@@ -1,5 +1,6 @@
+// Importing necessary components and utilities
 "use client";
-
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,6 +9,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -20,35 +30,26 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import * as React from "react";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
+// Defining props interface for DataTable component
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+
+// DataTable component definition
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
+  // State hooks for sorting, column filters, column visibility, and row selection
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  // Initializing react-table instance
   const table = useReactTable({
     data,
     columns,
@@ -68,8 +69,10 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  // Rendering DataTable component
   return (
     <div>
+      {/* Filter input and export button */}
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter based on donor's last name..."
@@ -85,6 +88,8 @@ export function DataTable<TData, TValue>({
           Export to Excel
         </Button>
       </div>
+
+      {/* Dropdown filter menu and Add New Donor button */}
       <div className="flex items-center py-4">
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -129,6 +134,8 @@ export function DataTable<TData, TValue>({
           <a href="/addDonor">Add New Donor</a>
         </Button>
       </div>
+
+      {/* Table component */}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -179,6 +186,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+
+      {/* Pagination and row selection info */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
