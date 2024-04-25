@@ -44,7 +44,7 @@ export default function page() {
                       <li>
                         <span className="font-bold">
                           Ensure proper sanitation
-                        </span>{" "}
+                        </span>
                         measures are followed to avoid contamination.
                       </li>
                     </ul>
@@ -106,7 +106,7 @@ export default function page() {
                   <AccordionContent>
                     <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
                       <li>
-                        Once logged in, go to the{" "}
+                        Once logged in, go to the
                         <span className="font-bold">Add Donor</span> page or
                         navigate to the appropriate section.
                       </li>
@@ -124,7 +124,7 @@ export default function page() {
                   <AccordionContent>
                     <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
                       <li>
-                        Scroll down and press the{" "}
+                        Scroll down and press the
                         <span className="font-bold">Power Button</span> to run
                         the program.
                       </li>
@@ -143,7 +143,7 @@ export default function page() {
                   <AccordionContent>
                     <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
                       <li>
-                        Once the machine stopped mixing, click{" "}
+                        Once the machine stopped mixing, click
                         <span className="font-bold">Open Camera</span> to
                         initiate the machine&apos;s camera.
                       </li>
@@ -166,7 +166,7 @@ export default function page() {
                     <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
                       <li>
                         Once the analysis is complete and the blood group is
-                        determined, click the{" "}
+                        determined, click the
                         <span className="font-bold">Save</span> button to add
                         the donor&apos;s information to the database.
                       </li>
@@ -274,16 +274,16 @@ export default function page() {
         <p className="font-light italic text-xs">
           Thank you for choosing Lifeline&apos;s Blood Grouping Machine. If you
           have any questions or need further assistance, please contact Lifeline
-          Technologies at{" "}
+          Technologies at
           <a href="#" className="underline">
             support@lifelinetechnologies.com
-          </a>{" "}
+          </a>
         </p>
       </div>
       <Separator className="mt-5" />
       <div className="">
         <p className="pt-3 mb-10 font-extralight text-center text-xs">
-          © 2024 Lifeline Technologies. All Rights Reserved. <br></br>{" "}
+          © 2024 Lifeline Technologies. All Rights Reserved. <br></br>
         </p>
       </div>
     </div>

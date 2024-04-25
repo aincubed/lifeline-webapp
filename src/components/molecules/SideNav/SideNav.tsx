@@ -18,7 +18,7 @@ export default function SideNav() {
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-lightGrey md:block"></div>
         <Link
-          className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-red hover:bg-opacity-10	hover:text-red md:flex-none md:justify-start md:p-2 md:px-3"
+          className="flex h-[48px] w-full items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-red hover:bg-opacity-10	hover:text-red md:flex-none md:justify-start md:p-2 md:px-3"
           href="/UserGuide"
         >
           <BadgeHelp />

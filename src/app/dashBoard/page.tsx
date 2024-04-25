@@ -19,7 +19,7 @@ export default function Dashboard() {
         <h1 className="mb-[30px] mt-[50px] text-[30px] font-medium">Report</h1>
         <Link
           className="flex items-center hover:cursor-pointer"
-          href={"/donorList"}
+          href={"/DonorList"}
         >
           <span>See full donor list</span>
           <span className="ml-2">
@@ -76,12 +76,12 @@ export default function Dashboard() {
         </Card>
         <Card className="my-5 flex items-center justify-center border-[2px] border-dashed border-black md:my-0">
           <CardContent className="flex flex-col items-center">
-            <Link className="hover:cursor-pointer" href={"/addDonor"}>
+            <Link className="hover:cursor-pointer" href={"/AddDonor"}>
               <Plus size={50} />
             </Link>
             <Link
               className="mt-2 text-[20px] font-semibold text-black hover:cursor-pointer"
-              href={"/addDonor"}
+              href={"/AddDonor"}
             >
               Add donors
             </Link>
