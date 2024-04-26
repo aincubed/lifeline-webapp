@@ -20,4 +20,6 @@ model DonorInformation {
   middleName               String?      @map("Middle Name (4)")
   age                      Int          @map("AGE (5)")        
   sex                      String       @map("SEX (6)") 
+  bloodSampleAcquisitionDate DateTime   @map("Acquired Date (7)")
+  practitionersName        String       @map("Practioner Name (8)")
 } 

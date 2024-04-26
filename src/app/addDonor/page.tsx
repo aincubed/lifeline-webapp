@@ -1,3 +1,6 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,42 +8,79 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 export default function AddDonor() {
+  const [formData, setFormData] = useState({
+    lastName: "",
+    firstName: "",
+    middleName: "",
+    age: "",
+    sex: "",
+    bloodSampleAcquisitionDate: "",
+    practitionersName: "",
+  });
+
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("/api/addDonor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add donor");
+      }
+
+      const data = await response.json();
+      console.log("New donor added:", data);
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  const handleChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="max-w-[1280px] p-[50px]">
       <h1 className="mb-[10px] text-[30px] font-bold">ADD DONOR</h1>
 
-      <div>
+      <form onSubmit={handleSubmit}>
         <div className="grid w-full shrink-0 gap-[20px] md:grid-cols-3">
           <div>
             <Label>Last Name</Label>
             <Input
               className="border-black"
               id="lastName"
+              name="lastName"
               placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleChange}
             />
           </div>
-
           <div>
             <Label>First Name</Label>
             <Input
               className="border-black"
               id="firstName"
+              name="firstName"
               placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleChange}
             />
           </div>
 
@@ -49,149 +89,67 @@ export default function AddDonor() {
             <Input
               className="border-black"
               id="middleName"
+              name="middleName"
               placeholder="Middle Name"
+              value={formData.middleName}
+              onChange={handleChange}
             />
           </div>
-
-          <div>
-            <Label>Birthday</Label>
-            <Input
-              className="border-black"
-              id="birthday"
-              placeholder="dd/mm/yyyy"
-            />
-          </div>
-
           <div>
             <Label>Age</Label>
-            <Input className="border-black" id="age" />
+            <Input
+              className="border-black"
+              id="age"
+              name="age"
+              placeholder="E.g. 21"
+              value={formData.age}
+              onChange={handleChange}
+            />
           </div>
-
-          <div>
-            <Label>Civil Status</Label>
-            <Select>
-              <SelectTrigger className="w-full border-black">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="single">Single</SelectItem>
-                <SelectItem value="married">Married</SelectItem>
-                <SelectItem value="divorced">Divorced</SelectItem>
-                <SelectItem value="widowed">Widowed</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <div>
             <Label>Sex</Label>
-            <Select>
-              <SelectTrigger className="w-full border-black">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="male">Male</SelectItem>
-                <SelectItem value="female">Female</SelectItem>
-              </SelectContent>
-            </Select>
+            <Input
+              className="border-black"
+              id="sex"
+              name="sex"
+              placeholder="E.g Male"
+              value={formData.sex}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <Label>Blood Sample Acquisition Date</Label>
+            <Input
+              className="border-black"
+              id="bloodSampleAcquisitionDate"
+              name="bloodSampleAcquisitionDate"
+              placeholder="MM/DD/YY"
+              value={formData.bloodSampleAcquisitionDate}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <Label>Practitioner's Name</Label>
+            <Input
+              className="border-black"
+              id="practitionersName"
+              name="practitionersName"
+              placeholder="E.g Dela Cruz"
+              value={formData.practitionersName}
+              onChange={handleChange}
+            />
           </div>
         </div>
+        <Button type="submit" className="mt-4">
+          Submit
+        </Button>
+      </form>
 
-        <h1 className="mb-[10px] mt-[20px] text-[30px] font-bold">Address</h1>
-
-        <div className="grid w-full shrink-0 gap-[20px] md:grid-cols-3">
-          <div>
-            <Label>Number-test--</Label>
-            <Input className="border-black" id="addressNumber" />
-          </div>
-
-          <div>
-            <Label>Street</Label>
-            <Input className="border-black" id="addressStreet" />
-          </div>
-
-          <div>
-            <Label>Barangay</Label>
-            <Input className="border-black" id="addressBarangay" />
-          </div>
-
-          <div>
-            <Label>City</Label>
-            <Input className="border-black" id="addressCity" />
-          </div>
-
-          <div>
-            <Label>Zip Code</Label>
-            <Input className="border-black" id="addressZipcode" />
-          </div>
-        </div>
-        <div className="my-[70px] grid w-full shrink-0 gap-[20px] md:grid-cols-3">
-          <div className="col-span-2">
-            <Label>Office Address</Label>
-            <Input className="border-black" id="addressOffice" />
-          </div>
-          <div>
-            <Label>Religion</Label>
-            <Input className="border-black" id="religion" />
-          </div>
-          <div>
-            <Label>Citizenship</Label>
-            <Input className="border-black" id="citizenship" />
-          </div>
-          <div>
-            <Label>Education</Label>
-            <Select>
-              <SelectTrigger className="w-full border-black">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="hsgrad">High School Graduate</SelectItem>
-                <SelectItem value="colgrad">College Graduate</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label>Occupation</Label>
-            <Input className="border-black" id="workOccupation" />
-          </div>
-        </div>
-        <div className="mb-[100px] grid w-full shrink-0 gap-[20px] md:grid-cols-3">
-          <div>
-            <Label>Telephone Number</Label>
-            <Input className="border-black" id="telephoneNumber" />
-          </div>
-
-          <div>
-            <Label>Mobile Number</Label>
-            <Input className="border-black" id="mobileNumber" />
-          </div>
-          <div>
-            <Label>Email Address</Label>
-            <Input className="border-black" id="emailAddress" />
-          </div>
-          <div>
-            <Label>ID Type</Label>
-            <Select>
-              <SelectTrigger className="w-full border-black">
-                <SelectValue placeholder="Select ID" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="schoolId">School</SelectItem>
-                <SelectItem value="companyId">Company</SelectItem>
-                <SelectItem value="prcId">PRC</SelectItem>
-                <SelectItem value="driversId">Drivers</SelectItem>
-                <SelectItem value="sss-gsis-birId">SSS/GSIS/BIR</SelectItem>
-                <SelectItem value="othersId">Others</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label>ID Number</Label>
-            <Input className="border-black" id="idnumber" />
-          </div>
-        </div>
-      </div>
-
-      <div>
+      <div className="mt-[70px]">
+        <h1 className="mb-[30px] text-[35px] font-bold">
+          Capture Blood Sample
+        </h1>
         <Card className="flex flex-col items-center justify-center">
           <CardHeader className="grid grid-cols-2 items-center">
             <CardTitle>Run Program</CardTitle>
