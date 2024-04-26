@@ -1,93 +1,52 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ChevronRight, Plus } from "lucide-react";
+import { LocalDateTime } from "@/components/molecules/dateAndTime/dateAndTime";
+import { DonorCountCard } from "@/components/molecules/donorCountCard/donorCountCard";
+import { Card, CardContent } from "@/components/ui/card";
+import dateTime from "date-time";
+import { CalendarFold, ChevronRight, SmilePlus } from "lucide-react";
 import Link from "next/link";
 
 export default function Dashboard() {
+  const dateToday = dateTime();
+
   return (
-    <div className="max-w-[1280px] px-[5%] py-[4%]">
-      <div className="h-[300px] w-full rounded-lg border-solid bg-gray-300 pl-[50px] pt-[25px]">
-        <h1 className="text-[40px] font-bold">Hello, admin</h1>
-        <p className="text-[20px]">Today is Sunday, 04/21/24 </p>
+    <>
+      <div className="">
+        <div className="flex flex-row justify-between mb-4">
+          <h1 className="text-3xl font-medium">Report</h1>
+          <div className="flex flex-row align-center justify-center items-center gap-x-2 text-sm font-medium">
+            <CalendarFold />
+            <LocalDateTime date={dateToday} />
+          </div>
+        </div>
       </div>
-      <div className="flex items-center justify-between">
-        <h1 className="mb-[30px] mt-[50px] text-[30px] font-medium">Report</h1>
-        <Link
-          className="flex items-center hover:cursor-pointer"
-          href={"/DonorList"}
-        >
-          <span>See full donor list</span>
-          <span className="ml-2">
-            <ChevronRight />
-          </span>
+      <div className="grid grid-cols-1 gap-x-[1rem] md:grid-cols-5">
+        <DonorCountCard />
+        <Link href="AddDonor">
+          <Card className="text-center border-2 border-blue border-opacity-20 border-dashed hover:border-opacity-60 transition-all ease-in-out">
+            <CardContent className="text-blue opacity-20 hover:opacity-90 flex flex-col items-center p-10 gap-y-2">
+              <div className="text-3xl rounded-md font-bold items-center justify-center flex h-[70px] w-[70px] bg-lightGrey">
+                <SmilePlus className="h-[70px] w-[70px]" />
+              </div>
+              New Donor
+            </CardContent>
+          </Card>
         </Link>
       </div>
-      <div className="grid gap-x-[25px] md:grid-cols-5">
-        <Card className="my-5 flex h-[300px] w-full flex-col items-center space-y-8 border-[1px] border-gray-300 md:my-0">
-          <CardHeader className="mt-[50px] h-[15%] w-[15%] items-center justify-center rounded-md bg-gray-300 p-[40px]">
-            <CardTitle className="md:text text-[35px] font-semibold">
-              O
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="break-words">
-            <p className="text-[32px] font-bold leading-none">125</p>
-            <CardDescription className="pl-[5px] leading-none">
-              donors
-            </CardDescription>
-          </CardContent>
-        </Card>
-        <Card className="my-5 flex h-[300px] w-full flex-col items-center space-y-8 border-[1px] border-gray-300 md:my-0">
-          <CardHeader className="mt-[50px] h-[15%] w-[15%] items-center justify-center rounded-md bg-gray-300 p-[40px]">
-            <CardTitle className="text-[35px] font-semibold">A</CardTitle>
-          </CardHeader>
-          <CardContent className="break-words">
-            <p className="text-[32px] font-bold leading-none">75</p>
-            <CardDescription className="pl-[5px] leading-none">
-              donors
-            </CardDescription>
-          </CardContent>
-        </Card>
-        <Card className="my-5 flex h-[300px] w-full flex-col items-center space-y-8 border-[1px] border-gray-300 md:my-0">
-          <CardHeader className="mt-[50px] h-[15%] w-[15%] items-center justify-center rounded-md bg-gray-300 p-[40px]">
-            <CardTitle className="text-[35px] font-semibold">B</CardTitle>
-          </CardHeader>
-          <CardContent className="break-words">
-            <p className="text-[32px] font-bold leading-none">41</p>
-            <CardDescription className="pl-[5px] leading-none">
-              donors
-            </CardDescription>
-          </CardContent>
-        </Card>
-        <Card className="my-5 flex h-[300px] w-full flex-col items-center space-y-8 border-[1px] border-gray-300 md:my-0">
-          <CardHeader className="mt-[50px] h-[15%] w-[15%] items-center justify-center rounded-md bg-gray-300 p-[40px]">
-            <CardTitle className="text-[35px] font-semibold">AB</CardTitle>
-          </CardHeader>
-          <CardContent className="break-words">
-            <p className="text-[32px] font-bold leading-none">18</p>
-            <CardDescription className="pl-[5px] leading-none">
-              donors
-            </CardDescription>
-          </CardContent>
-        </Card>
-        <Card className="my-5 flex items-center justify-center border-[2px] border-dashed border-black md:my-0">
-          <CardContent className="flex flex-col items-center">
-            <Link className="hover:cursor-pointer" href={"/AddDonor"}>
-              <Plus size={50} />
-            </Link>
+
+      <Card className="h-[100vh] mt-4 py-10 px-2 border-lightGrey hover:border-grey hover:border-opacity-40 transition-all ease-in-out">
+        <CardContent>
+          <div className="flex flex-row justify-between items-center mb-4">
+            <h1 className="text-2xl font-medium">Recently Added</h1>
             <Link
-              className="mt-2 text-[20px] font-semibold text-black hover:cursor-pointer"
-              href={"/AddDonor"}
+              className="flex text-sm items-center hover:cursor-pointer text-darkGrey opacity-50 hover:opacity-100"
+              href={"/DonorList"}
             >
-              Add donors
+              See Full List
+              <ChevronRight className="h-10" />
             </Link>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
   );
 }
