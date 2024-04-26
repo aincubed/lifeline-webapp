@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+}
+
+model DonorInformation {
+  id                       String       @id @default(cuid())
+  lastName                 String       @map("Last Name (2)")     
+  firstName                String       @map("First Name (3)")      
+  middleName               String?      @map("Middle Name (4)")
+  age                      Int          @map("AGE (5)")        
+  sex                      String       @map("SEX (6)") 
+  bloodSampleAcquisitionDate DateTime   @map("Acquired Date (7)")
+  practitionersName        String       @map("Practioner Name (8)")
+} 
