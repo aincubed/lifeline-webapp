@@ -1,7 +1,15 @@
-export default function Home() {
+import prisma from "@/lib/prisma";
+
+export default async function Home() {
+  const entries = await prisma.entry.findMany();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>hello</h1>
-    </main>
+    <>
+      {entries.map((entry) => (
+        <div key={entry.id}>
+          <h1>{entry.title}</h1>
+          <h1>{entry.content}</h1>
+        </div>
+      ))}
+    </>
   );
 }

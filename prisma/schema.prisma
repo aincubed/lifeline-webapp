@@ -11,12 +11,15 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
  
-model User {
+model Entry {
   id        String      @id @default(uuid())
-  lastName  String
-  firstName  String
-  middleName  String?
-  age     Int
-  image     String
   createdAt DateTime @default(now())
+  title      String
+  content     String
+  mood Mood
+}
+
+enum Mood {
+  sad
+  happy
 }
