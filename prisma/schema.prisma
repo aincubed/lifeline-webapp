@@ -12,14 +12,26 @@ datasource db {
 }
  
 model Entry {
-  id        String      @id @default(uuid())
-  createdAt DateTime @default(now())
-  title      String
-  content     String
-  mood Mood
+  id               String      @id @default(uuid())
+  createdAt        DateTime    @default(now())
+  lastName         String
+  firstName        String
+  middleName       String?
+  age              Int
+  sex Sex
+  practitionerName String
+  bloodType BloodType
 }
 
-enum Mood {
-  sad
-  happy
+enum BloodType {
+  A
+  B
+  AB
+  O
+  undefined
+}
+
+enum Sex {
+  Male
+  Female
 }
