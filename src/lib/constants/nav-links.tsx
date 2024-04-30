@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 const links = [
   { name: "Dashboard", href: "/Dashboard", icon: LayoutDashboard },
   { name: "Donor List", href: "/DonorList", icon: Rows3 },
-  { name: "Add Donor", href: "/AddDonor", icon: UserRoundPlus },
+  { name: "Add Donor", href: "/NewDonor", icon: UserRoundPlus },
 ];
 
 export default function NavLinks() {

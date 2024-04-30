@@ -69,6 +69,7 @@ export const CaptureImage = () => {
               height={360}
               alt="Screenshot of sample image"
             />
+            <p>{url}</p>
           </div>
         </>
       )}

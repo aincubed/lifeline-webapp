@@ -1,5 +1,5 @@
 import { LocalDateTime } from "@/components/molecules/dateAndTime/dateAndTime";
-import { DonorCountCard } from "@/components/molecules/donorCountCard/donorCountCard";
+import { DonorCountCard } from "@/components/molecules/DonorCountCard";
 import { Card, CardContent } from "@/components/ui/card";
 import dateTime from "date-time";
 import { CalendarFold, ChevronRight, SmilePlus } from "lucide-react";
