@@ -1,3 +1,4 @@
+import Logout from "@/lib/constants/logout";
 import NavLinks from "@/lib/constants/nav-links";
 import { BadgeHelp } from "lucide-react";
 import Link from "next/link";
@@ -6,11 +7,11 @@ export default function SideNav() {
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <Link
-        className="mb-2 flex h-40 items-end bg-lightGrey justify-start rounded-md p-4 md:h-30"
+        className="md:h-30 mb-2 flex h-40 items-end justify-start rounded-md bg-lightGrey p-4"
         href="/Dashboard"
       >
-        <div className="w-50 text-black md:w-50">
-          <h1 className="text-red text-[2.4rem] font-bold -mb-3">LIFELINE</h1>
+        <div className="w-50 md:w-50 text-black">
+          <h1 className="-mb-3 text-[2.4rem] font-bold text-red">LIFELINE</h1>
           <h2>Donor List Repository</h2>
         </div>
       </Link>
@@ -23,6 +24,15 @@ export default function SideNav() {
         >
           <BadgeHelp />
           <div className="hidden md:block">User Guide</div>
+        </Link>
+        <Link
+          className="flex h-[48px] w-full items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-red hover:bg-opacity-10	hover:text-red md:flex-none md:justify-start md:p-2 md:px-3"
+          href="/"
+        >
+          <BadgeHelp />
+          <div className="hidden md:block">
+            <Logout />
+          </div>
         </Link>
       </div>
     </div>
