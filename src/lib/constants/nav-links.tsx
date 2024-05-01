@@ -1,16 +1,17 @@
 "use client";
 
 import clsx from "clsx";
-import { LayoutDashboard, Rows3, UserRoundPlus } from "lucide-react";
+import { LineChart, Rows3, Scan, UserRoundPlus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  { name: "Dashboard", href: "/Dashboard", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/", icon: LineChart },
   { name: "Donor List", href: "/DonorList", icon: Rows3 },
-  { name: "Add Donor", href: "/AddDonor", icon: UserRoundPlus },
+  { name: "Add Donor", href: "/NewDonor", icon: UserRoundPlus },
+  { name: "Screen Blood", href: "/ScreenBlood", icon: Scan },
 ];
 
 export default function NavLinks() {

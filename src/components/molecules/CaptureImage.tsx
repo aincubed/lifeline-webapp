@@ -62,13 +62,18 @@ export const CaptureImage = () => {
               delete
             </button>
           </div> */}
-          <div>
-            <Image
-              src={url}
-              width={720}
-              height={360}
-              alt="Screenshot of sample image"
-            />
+          <div className="flex flex-col overflow-auto">
+            <div>
+              <Image
+                src={url}
+                width={720}
+                height={360}
+                alt="Screenshot of sample image"
+              />
+            </div>
+            <div className="flex max-w-[100px]">
+              <p>{url}</p>
+            </div>
           </div>
         </>
       )}

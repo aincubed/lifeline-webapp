@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 
-import { CaptureImage } from "@/components/molecules/captureImage/captureImage";
+import { CaptureImage } from "@/components/molecules/CaptureImage";
 
 export default function AddDonor() {
   return (
