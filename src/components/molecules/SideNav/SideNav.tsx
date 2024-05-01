@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
+    <div className="flex h-full flex-col w-[250px] px-3 py-4 md:px-2">
       <Link
         className="mb-2 flex h-40 items-end bg-lightGrey justify-start rounded-md p-4 md:h-30"
         href="/"
