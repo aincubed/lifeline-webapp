@@ -27,7 +27,7 @@ export default function RootLayout({
           {/* <div className="w-full flex-none md:w-64"> */}
           <div
             className={cn("w-[250px] flex", {
-              hidden: pathname == "/login" || "/signup",
+              hidden: pathname == "/login" || pathname == "/signup",
             })}
           >
             <SideNav />
