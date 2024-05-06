@@ -34,7 +34,7 @@ export default async function Dashboard() {
       </div>
       <div className="grid grid-cols-1 gap-x-[1rem] md:grid-cols-5">
         <DonorCountCard />
-        <Link href="/NewDonor">
+        <Link href="/NewInfo">
           <Card className="border-2 border-dashed border-blue border-opacity-20 text-center transition-all ease-in-out hover:border-opacity-60">
             <CardContent className="flex flex-col items-center gap-y-2 p-10 text-blue opacity-20 hover:opacity-90">
               <div className="flex h-[70px] w-[70px] items-center justify-center rounded-md bg-lightGrey text-3xl font-bold">
