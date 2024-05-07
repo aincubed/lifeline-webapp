@@ -23,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-screen flex-col text-black md:flex-row md:overflow-hidden">
+        <div className="text-black flex h-screen flex-col md:flex-row md:overflow-hidden">
           {/* <div className="w-full flex-none md:w-64"> */}
           <div
-            className={cn("flex w-[250px]", {
+            className={cn("w-[250px] flex", {
               hidden: pathname == "/login" || pathname == "/signup",
             })}
           >
