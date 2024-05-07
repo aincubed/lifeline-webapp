@@ -1,8 +1,9 @@
 // Importing DataTable component from the listDonor directory
-"use client";
+import { redirect } from "next/navigation";
 import { DataTable } from "../../components/molecules/listDonor/DataTable";
 
 // Importing DonorInfo type and columns definition from listDonor directory
+import { createClient } from "@/utils/supabase/server";
 import {
   DonorInfo,
   columns,
@@ -10,8 +11,14 @@ import {
 
 // Function to asynchronously fetch donor data
 async function getData(): Promise<DonorInfo[]> {
-  // Fetch data from your API here.
-  // For demonstration purposes, a static data array is returned.
+  const supabase = createClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    redirect("/login");
+  }
   return [
     {
       id: "728ed52f",

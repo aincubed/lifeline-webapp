@@ -6,13 +6,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function page() {
+export default async function page() {
+  const supabase = createServerComponentClient({ cookies });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    redirect("/login");
+  }
   return (
     <div className="m-16">
-      <h1 className="font-extrabold text-3xl">Lifeline User Guide</h1>
+      <h1 className="text-3xl font-extrabold">Lifeline User Guide</h1>
       <Separator className="mt-5" />
-      <p className="pt-5 font-light text-justify text-base">
+      <p className="pt-5 text-justify text-base font-light">
         Welcome to the Blood Grouping Machine by Lifeline! This user guide will
         walk you through the process of using the machine to determine the blood
         group of a blood sample using advanced AI technology. Please follow
@@ -22,7 +33,7 @@ export default function page() {
       <div className="m-5">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="font-semibold text-lg">
+            <AccordionTrigger className="text-lg font-semibold">
               Preliminary Steps
             </AccordionTrigger>
             <AccordionContent>
@@ -32,11 +43,11 @@ export default function page() {
               </div>
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1-1" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Blood Sample Collection
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         The practitioner should prick a blood sample using
                         lancet needles and a capillary tube from the donor.
@@ -51,11 +62,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-2" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Sample Preparation
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Extract the acquired blood sample onto a concave glass
                         slide, which will be placed inside the machine.
@@ -78,7 +89,7 @@ export default function page() {
 
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="font-semibold text-lg">
+            <AccordionTrigger className="text-lg font-semibold">
               Using the machine
             </AccordionTrigger>
             <AccordionContent>
@@ -87,11 +98,11 @@ export default function page() {
               </div>
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1-1" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Access the Web Application
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Open your web browser and navigate to the Lifeline web
                         application.
@@ -100,11 +111,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-2" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Add Donor Information
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Once logged in, go to the
                         <span className="font-bold">Add Donor</span> page or
@@ -118,11 +129,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-3" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Power On the Machine
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Scroll down and press the
                         <span className="font-bold">Power Button</span> to run
@@ -137,11 +148,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-4" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Blood Group Analysis
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Once the machine stopped mixing, click
                         <span className="font-bold">Open Camera</span> to
@@ -159,11 +170,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-5" className="ml-10">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Saving Donor Information
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Once the analysis is complete and the blood group is
                         determined, click the
@@ -180,7 +191,7 @@ export default function page() {
 
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="font-semibold text-lg">
+            <AccordionTrigger className="text-lg font-semibold">
               Maintenance
             </AccordionTrigger>
             <AccordionContent>
@@ -190,11 +201,11 @@ export default function page() {
               </div>
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1-1" className="ml-5">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Regular Cleaning
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Clean the exterior of the machine regularly using a
                         soft, damp cloth. Avoid harsh chemicals.
@@ -207,11 +218,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-2" className="ml-5">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Calibration
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Periodically calibrate the machine according to the
                         manufacturer&apos;s instructions to maintain accuracy.
@@ -226,7 +237,7 @@ export default function page() {
 
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="font-semibold text-lg">
+            <AccordionTrigger className="text-lg font-semibold">
               Storing
             </AccordionTrigger>
             <AccordionContent>
@@ -236,11 +247,11 @@ export default function page() {
               </div>
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1-1" className="ml-5">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Room Temperature Storage
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Store the machine in a clean, dry environment at room
                         temperature.
@@ -252,11 +263,11 @@ export default function page() {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-1-2" className="ml-5">
-                  <AccordionTrigger className="font-medium text-base">
+                  <AccordionTrigger className="text-base font-medium">
                     Securing Location
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ul className="list-disc pl-11 pt-2 space-y-2 font-light">
+                    <ul className="list-disc space-y-2 pl-11 pt-2 font-light">
                       <li>
                         Store the machine in a secure location away from
                         potential hazards or unauthorized access.
@@ -271,7 +282,7 @@ export default function page() {
       </div>
 
       <div className="mt-10">
-        <p className="font-light italic text-xs">
+        <p className="text-xs font-light italic">
           Thank you for choosing Lifeline&apos;s Blood Grouping Machine. If you
           have any questions or need further assistance, please contact Lifeline
           Technologies at
@@ -282,7 +293,7 @@ export default function page() {
       </div>
       <Separator className="mt-5" />
       <div className="">
-        <p className="pt-3 mb-10 font-extralight text-center text-xs">
+        <p className="mb-10 pt-3 text-center text-xs font-extralight">
           © 2024 Lifeline Technologies. All Rights Reserved. <br></br>
         </p>
       </div>
