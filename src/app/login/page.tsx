@@ -1,6 +1,5 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Login({
@@ -45,12 +44,12 @@ export default async function Login({
           action={signIn}
         >
           <label className="text-md" htmlFor="email">
-            Email
+            Admin
           </label>
           <input
             className="mb-6 rounded-md border bg-inherit px-4 py-2"
             name="email"
-            placeholder="you@example.com"
+            placeholder="admin@example.com"
             required
           />
           <label className="text-md" htmlFor="password">
@@ -63,7 +62,7 @@ export default async function Login({
             placeholder="••••••••"
             required
           />
-          <button className="mb-2 rounded-md bg-indigo-700 px-4 py-2 text-foreground">
+          <button className="mb-2 rounded-md bg-red px-4 py-2 text-foreground text-white">
             Sign In
           </button>
 
@@ -73,23 +72,6 @@ export default async function Login({
             </p>
           )}
         </form>
-
-        <Link
-          href="/forgot-password"
-          className="rounded-md text-sm text-indigo-400 no-underline "
-        >
-          Forgotten Password.
-        </Link>
-
-        <br />
-        <br />
-
-        <Link
-          href="/signup"
-          className="rounded-md text-sm text-foreground no-underline"
-        >
-          Don't have an Account? Sign Up
-        </Link>
       </div>
     </div>
   );

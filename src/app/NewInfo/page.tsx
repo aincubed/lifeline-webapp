@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { onSubmit } from "@/app/api/addDonor/route";
+import { CaptureImage } from "@/components/molecules/CaptureImage";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -206,6 +207,7 @@ export default function AddDonor() {
           </Form>
         </CardContent>
       </Card>
+      <CaptureImage firstName={"firstName"} lastName={"lastName"} />
     </div>
   );
 }
