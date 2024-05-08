@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
@@ -14,26 +15,47 @@ const videoConstraints = {
 export const CaptureImage = () => {
   const [isCaptureEnable, setCaptureEnable] = useState<boolean>(false);
   const webcamRef = useRef<Webcam>(null);
-  const [url, setUrl] = useState<string | null>(null);
+  const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const supabase = createClient();
+
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
-      setUrl(imageSrc);
+      setCapturedImage(imageSrc);
     }
   }, [webcamRef]);
+
+  const handleUpload = async () => {
+    if (capturedImage) {
+      try {
+        const blobData = await fetch(capturedImage).then((res) => res.blob());
+        const { data, error }: { data: any; error: any } =
+          await supabase.storage
+            .from("blood group")
+            .upload("image.jpeg", blobData);
+        if (error) {
+          console.error("Error uploading image:", error.message);
+        } else if (data) {
+          console.log("Image uploaded successfully:", data);
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error.message);
+      }
+    }
+  };
 
   return (
     <>
       {isCaptureEnable || (
         <Button variant={"outline"} onClick={() => setCaptureEnable(true)}>
-          start
+          Start
         </Button>
       )}
       {isCaptureEnable && (
         <>
           <div>
             <Button variant={"outline"} onClick={() => setCaptureEnable(false)}>
-              end
+              End
             </Button>
           </div>
           <div>
@@ -47,34 +69,21 @@ export const CaptureImage = () => {
             />
           </div>
           <Button variant={"outline"} onClick={capture}>
-            capture
+            Capture
           </Button>
-        </>
-      )}
-      {url && (
-        <>
-          {/* <div>
-            <button
-              onClick={() => {
-                setUrl(null);
-              }}
-            >
-              delete
-            </button>
-          </div> */}
-          <div className="flex flex-col overflow-auto">
+          {capturedImage && (
             <div>
               <Image
-                src={url}
+                src={capturedImage}
                 width={720}
                 height={360}
-                alt="Screenshot of sample image"
+                alt="Captured Image Preview"
               />
+              <Button variant={"outline"} onClick={handleUpload}>
+                Upload
+              </Button>
             </div>
-            <div className="flex max-w-[100px]">
-              <p>{url}</p>
-            </div>
-          </div>
+          )}
         </>
       )}
     </>
