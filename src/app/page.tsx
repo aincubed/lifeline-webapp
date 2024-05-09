@@ -1,5 +1,8 @@
+"use server";
 import { LocalDateTime } from "@/components/molecules/DateAndTime";
 import { DonorCountCard } from "@/components/molecules/DonorCountCard";
+import { RecentlyAdd } from "@/components/molecules/listDonor/RecentlyAdd";
+import { DonorInfo, columns } from "@/components/molecules/listDonor/column";
 import { Card, CardContent } from "@/components/ui/card";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import dateTime from "date-time";
@@ -20,15 +23,33 @@ export default async function Dashboard() {
     return redirect("/login");
   }
 
+  async function getData(): Promise<DonorInfo[]> {
+    try {
+      // Fetch specific columns from the 'donor_info' table in Supabase
+      const { data, error } = await supabase
+        .from("todos")
+        .select("id, lastName, firstName, bloodGroup, acquiredDate");
+      if (error) {
+        throw error;
+      }
+      // Return the fetched data
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+      return [];
+    }
+  }
+
   const dateToday = dateTime();
+  const data = await getData();
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-medium mb-5">Dashboard</h1>
+    <div className="container mx-auto">
+      <h1 className="mb-5 text-3xl font-medium">Dashboard</h1>
       <div className="">
-        <div className="bg-blue flex justify-between text-[1.5rem] text-white p-10 rounded-md mb-5 justify-left">
+        <div className="justify-left mb-5 flex justify-between rounded-md bg-blue p-10 text-[1.5rem] text-white">
           Hey, Admin!
-          <div className="flex text-[16px] items-center justify-center gap-x-2">
+          <div className="flex items-center justify-center gap-x-2 text-[16px]">
             <CalendarIcon />
             <LocalDateTime date={dateToday} />
           </div>
@@ -49,7 +70,7 @@ export default async function Dashboard() {
         </Link>
       </div>
 
-      <Card className="mt-4 h-[100vh] border-lightGrey px-2 py-10 transition-all ease-in-out hover:border-grey hover:border-opacity-40">
+      <Card className="mt-4 h-[38vh] border-lightGrey px-2 py-10 transition-all ease-in-out hover:border-grey hover:border-opacity-40">
         <CardContent>
           <div className="mb-4 flex flex-row items-center justify-between">
             <h1 className="text-2xl font-medium">Recently Added</h1>
@@ -61,6 +82,7 @@ export default async function Dashboard() {
               <ChevronRight className="h-10" />
             </Link>
           </div>
+          <RecentlyAdd columns={columns} data={data} />
         </CardContent>
       </Card>
     </div>
