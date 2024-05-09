@@ -2,11 +2,25 @@ import { LocalDateTime } from "@/components/molecules/DateAndTime";
 import { DonorCountCard } from "@/components/molecules/DonorCountCard";
 import User from "@/components/molecules/User";
 import { Card, CardContent } from "@/components/ui/card";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import dateTime from "date-time";
 import { CalendarFold, ChevronRight, SmilePlus } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({cookies: () => cookieStore});
+
+  const {data: {user}} = await supabase.auth.getUser()
+
+  if (!user){
+    return (
+    redirect ("/login")
+    )
+  }
+  
   const dateToday = dateTime();
 
   return (
@@ -52,3 +66,4 @@ export default function Dashboard() {
     </>
   );
 }
+
