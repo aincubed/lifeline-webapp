@@ -1,9 +1,11 @@
 "use client";
 
 import SideNav from "@/components/molecules/SideNav/SideNav";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +37,7 @@ export default function RootLayout({
           <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
             {children}
           </div>
+          <Toaster />
         </div>
       </body>
     </html>
