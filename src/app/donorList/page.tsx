@@ -1,5 +1,5 @@
 // Importing DataTable component from the listDonor directory
-"use client";
+import { createClient } from "@/utils/supabase/server";
 import { DataTable } from "../../components/molecules/listDonor/DataTable";
 
 // Importing DonorInfo type and columns definition from listDonor directory
@@ -8,34 +8,23 @@ import {
   columns,
 } from "../../components/molecules/listDonor/column";
 
+const supabase = createClient();
 // Function to asynchronously fetch donor data
 async function getData(): Promise<DonorInfo[]> {
-  // Fetch data from your API here.
-  // For demonstration purposes, a static data array is returned.
-  return [
-    {
-      id: "728ed52f",
-      lastName: "Termulo",
-      firstName: "Erica",
-      bloodGroup: "O",
-      acquisitionDate: new Date("2024-04-22T12:30:00"),
-    },
-    {
-      id: "728ed52h",
-      lastName: "Bergola",
-      firstName: "Khryx Rhoien",
-      bloodGroup: "B",
-      acquisitionDate: new Date("2024-03-22T12:30:00"),
-    },
-    {
-      id: "728ed52g",
-      lastName: "Gatus",
-      firstName: "Mark Andrei",
-      bloodGroup: "O",
-      acquisitionDate: new Date("2024-02-22T12:30:00"),
-    },
-    // Add more data objects as needed
-  ];
+  try {
+    // Fetch specific columns from the 'donor_info' table in Supabase
+    const { data, error } = await supabase
+      .from("todos")
+      .select("id, lastName, firstName, bloodGroup, acquiredDate");
+    if (error) {
+      throw error;
+    }
+    // Return the fetched data
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    return [];
+  }
 }
 
 // Default function for the DemoPage component
