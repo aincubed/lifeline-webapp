@@ -2,9 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
+import { ToastAction } from "@radix-ui/react-toast";
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
+import { useToast } from "../ui/use-toast";
 
 const videoConstraints = {
   width: 720,
@@ -22,6 +25,7 @@ export default function CaptureImage({ firstName, lastName }: DonorInfoProps) {
   const webcamRef = useRef<Webcam>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const supabase = createClient();
+  const { toast } = useToast();
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot();
@@ -39,13 +43,27 @@ export default function CaptureImage({ firstName, lastName }: DonorInfoProps) {
           await supabase.storage
             .from("blood group")
             .upload(`${lastName}, ${firstName}`, blobData);
+        toast({
+          title: "Donor Added Succesfully!",
+          description: "Donor information has been saved",
+          action: (
+            <ToastAction altText="Back to main page">
+              <Link
+                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
+                href="/"
+              >
+                Back
+              </Link>
+            </ToastAction>
+          ),
+        });
         if (error) {
           console.error("Error uploading image:", error.message);
         } else if (data) {
           console.log("Image uploaded successfully:", data);
         }
       } catch (error) {
-        console.error("Error uploading image:", error.message);
+        console.error("Error uploading image:", (error as Error).message);
       }
     }
   };
@@ -54,7 +72,7 @@ export default function CaptureImage({ firstName, lastName }: DonorInfoProps) {
     <>
       {isCaptureEnable || (
         <Button variant={"outline"} onClick={() => setCaptureEnable(true)}>
-          Start
+          Star Blood Screening
         </Button>
       )}
       {isCaptureEnable && (
@@ -67,7 +85,7 @@ export default function CaptureImage({ firstName, lastName }: DonorInfoProps) {
           <div>
             <Webcam
               audio={false}
-              width={540}
+              width={950}
               height={360}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
@@ -86,7 +104,7 @@ export default function CaptureImage({ firstName, lastName }: DonorInfoProps) {
                 alt="Captured Image Preview"
               />
               <Button variant={"outline"} onClick={handleUpload}>
-                Upload
+                Submit
               </Button>
             </div>
           )}

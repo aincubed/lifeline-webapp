@@ -3,7 +3,7 @@ import { DonorCountCard } from "@/components/molecules/DonorCountCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import dateTime from "date-time";
-import { CalendarFold, ChevronRight, SmilePlus } from "lucide-react";
+import { CalendarIcon, ChevronRight, SmilePlus } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -24,16 +24,17 @@ export default async function Dashboard() {
 
   return (
     <div className="container mx-auto py-10">
+      <h1 className="text-3xl font-medium mb-5">Dashboard</h1>
       <div className="">
-        <div className="mb-5 flex flex-row justify-between">
-          <h1 className="text-3xl font-medium">Dashboard</h1>
-          <div className="align-center flex flex-row items-center justify-center gap-x-2 text-sm font-medium">
-            <CalendarFold />
+        <div className="bg-blue flex justify-between text-[1.5rem] text-white p-10 rounded-md mb-5 justify-left">
+          Hey, Admin!
+          <div className="flex text-[16px] items-center justify-center gap-x-2">
+            <CalendarIcon />
             <LocalDateTime date={dateToday} />
-            {/* <User /> */}
           </div>
         </div>
       </div>
+      {/* <h2 className="text-2xl font-medium mb-5">Donor Count Today</h2> */}
       <div className="grid grid-cols-1 gap-x-[1rem] md:grid-cols-5">
         <DonorCountCard />
         <Link href="/NewDonor">
