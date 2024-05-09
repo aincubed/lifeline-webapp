@@ -6,21 +6,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { createClient } from "@/utils/supabase/client";
-import { redirect } from "next/navigation";
 
 export default async function page() {
-
-  const supabase = createClient();
-  const {data: {user}} = await supabase.auth.getUser()
-  if (!user){
-    return (
-    redirect ("/login")
-    )
-  }
   return (
-    <div className="m-16">
-      <h1 className="font-extrabold text-3xl">Lifeline User Guide</h1>
+    <div className="container mx-auto py-10">
+      <h1 className="text-3xl font-medium mb-5">User Guide</h1>
       <Separator className="mt-5" />
       <p className="pt-5 font-light text-justify text-base">
         Welcome to the Blood Grouping Machine by Lifeline! This user guide will
