@@ -21,7 +21,7 @@ export type DonorInfo = {
   lastName: string;
   firstName: string;
   bloodGroup: "O" | "A" | "AB" | "B";
-  acquisitionDate: Date;
+  acquiredDate: Date;
 };
 
 // Definition of columns for the table
@@ -95,7 +95,7 @@ export const columns: ColumnDef<DonorInfo>[] = [
     },
   },
   {
-    accessorKey: "acquisitionDate",
+    accessorKey: "acquiredDate",
     header: ({ column }) => {
       return (
         <Button

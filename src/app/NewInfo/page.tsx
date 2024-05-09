@@ -25,19 +25,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createClient } from "@/utils/supabase/client";
-import { redirect } from "next/navigation";
 
-
-export default async function AddDonor() {
-  const supabase = createClient();
-  const {data: {user}} = await supabase.auth.getUser()
-  if (!user){
-    return (
-    redirect ("/login")
-    )
-  }
-  
+export default function AddDonor() {
   const form = useForm<z.infer<typeof donorInfoSchema>>({
     resolver: zodResolver(donorInfoSchema),
     defaultValues: {

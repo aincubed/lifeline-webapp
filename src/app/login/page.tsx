@@ -7,15 +7,15 @@ export default async function Login({
 }: {
   searchParams: { message: string };
 }) {
-  const supabase = createClient();
+  // const supabase = createClient();
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  // const {
+  //   data: { session },
+  // } = await supabase.auth.getSession();
 
-  if (session) {
-    return redirect("/");
-  }
+  // if (session) {
+  //   return redirect("/");
+  // }
 
   const signIn = async (formData: FormData) => {
     "use server";
