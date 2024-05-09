@@ -22,7 +22,7 @@ async function getData(): Promise<DonorInfo[]> {
     // Return the fetched data
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error.message);
+    console.error("Error fetching data:", (error as Error).message);
     return [];
   }
 }
