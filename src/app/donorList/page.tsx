@@ -35,9 +35,7 @@ export default async function DemoPage() {
   // Rendering DemoPage component
   return (
     <div className="container mx-auto py-10">
-      <div className="mb-5">
-        <h1 className="text-3xl font-medium">Donor Information</h1>
-      </div>
+      <h1 className="text-3xl font-medium mb-5">Donor Directory</h1>
       {/* Rendering DataTable component with columns and data */}
       <DataTable columns={columns} data={data} />
     </div>

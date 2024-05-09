@@ -1,6 +1,5 @@
 import { LocalDateTime } from "@/components/molecules/DateAndTime";
 import { DonorCountCard } from "@/components/molecules/DonorCountCard";
-import User from "@/components/molecules/User";
 import { Card, CardContent } from "@/components/ui/card";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import dateTime from "date-time";
@@ -11,27 +10,27 @@ import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
   const cookieStore = cookies();
-  const supabase = createServerComponentClient({cookies: () => cookieStore});
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
 
-  const {data: {user}} = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (!user){
-    return (
-    redirect ("/login")
-    )
+  if (!user) {
+    return redirect("/login");
   }
-  
+
   const dateToday = dateTime();
 
   return (
-    <>
+    <div className="container mx-auto py-10">
       <div className="">
-        <div className="mb-4 flex flex-row justify-between">
-          <h1 className="text-3xl font-medium">Report</h1>
+        <div className="mb-5 flex flex-row justify-between">
+          <h1 className="text-3xl font-medium">Dashboard</h1>
           <div className="align-center flex flex-row items-center justify-center gap-x-2 text-sm font-medium">
             <CalendarFold />
             <LocalDateTime date={dateToday} />
-            <User />
+            {/* <User /> */}
           </div>
         </div>
       </div>
@@ -63,7 +62,6 @@ export default async function Dashboard() {
           </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }
-
