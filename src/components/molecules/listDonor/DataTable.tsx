@@ -30,6 +30,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import Link from "next/link";
 import { useState } from "react";
 
 // Defining props interface for DataTable component
@@ -73,7 +74,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       {/* Filter input and export button */}
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-2">
         <Input
           placeholder="Filter based on donor's last name..."
           value={
@@ -85,7 +86,7 @@ export function DataTable<TData, TValue>({
           className="max-w-sm"
         />
         <Button variant="outline" className="ml-auto">
-          Export to Excel
+          Export to CSV
         </Button>
       </div>
 
@@ -131,7 +132,7 @@ export function DataTable<TData, TValue>({
         </DropdownMenu>
 
         <Button variant="outline" className="ml-auto">
-          <a href="/addDonor">Add New Donor</a>
+          <Link href="/NewDonor">Add New Donor</Link>
         </Button>
       </div>
 
@@ -148,7 +149,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -167,7 +168,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

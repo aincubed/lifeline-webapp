@@ -12,7 +12,12 @@ const videoConstraints = {
   facingMode: "user",
 };
 
-export const CaptureImage = () => {
+type DonorInfoProps = {
+  firstName?: string;
+  lastName?: string;
+};
+
+export default function CaptureImage({ firstName, lastName }: DonorInfoProps) {
   const [isCaptureEnable, setCaptureEnable] = useState<boolean>(false);
   const webcamRef = useRef<Webcam>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -29,10 +34,11 @@ export const CaptureImage = () => {
     if (capturedImage) {
       try {
         const blobData = await fetch(capturedImage).then((res) => res.blob());
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const { data, error }: { data: any; error: any } =
           await supabase.storage
             .from("blood group")
-            .upload("image.jpeg", blobData);
+            .upload(`${lastName}, ${firstName}`, blobData);
         if (error) {
           console.error("Error uploading image:", error.message);
         } else if (data) {
@@ -88,4 +94,4 @@ export const CaptureImage = () => {
       )}
     </>
   );
-};
+}
