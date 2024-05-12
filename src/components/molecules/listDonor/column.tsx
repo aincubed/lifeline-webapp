@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { InformationPopup } from "../Popup";
 
 // Defining the shape of data for our table
 export type DonorInfo = {
@@ -116,6 +117,7 @@ export const columns: ColumnDef<DonorInfo>[] = [
 
       return (
         <DropdownMenu>
+          <InformationPopup donorInfo={profile} />
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>

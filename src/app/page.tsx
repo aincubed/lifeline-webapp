@@ -1,4 +1,3 @@
-"use server";
 import { LocalDateTime } from "@/components/molecules/DateAndTime";
 import { DonorCountCard } from "@/components/molecules/DonorCountCard";
 import { RecentlyAdd } from "@/components/molecules/listDonor/RecentlyAdd";

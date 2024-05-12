@@ -38,12 +38,13 @@ import { useState } from "react";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onViewDetails: (donorId: string) => void;
 }
-
 // DataTable component definition
 export function DataTable<TData, TValue>({
   columns,
   data,
+  onViewDetails,
 }: DataTableProps<TData, TValue>) {
   // State hooks for sorting, column filters, column visibility, and row selection
   const [sorting, setSorting] = useState<SortingState>([]);
