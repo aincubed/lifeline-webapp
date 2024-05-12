@@ -34,36 +34,54 @@ export function InformationPopup({ donorInfo }) {
               <div className="mt-[10px] grid h-[20vh] grid-cols-2 px-[70px] text-[16px] font-semibold">
                 <div className="flex flex-col justify-between">
                   <p>
-                    First Name:{" "}
-                    <span className="ml-[30px]">{donorInfo.firstName}</span>
+                    First Name:
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.firstName}
+                    </span>
                   </p>
                   <p>
-                    Middle Name:{" "}
-                    <span className="ml-[30px]">{donorInfo.middleName}</span>
+                    Middle Name:
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.middleName}
+                    </span>
                   </p>
                   <p>
-                    Last Name:{" "}
-                    <span className="ml-[30px]">{donorInfo.lastName}</span>
+                    Last Name:
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.lastName}
+                    </span>
                   </p>
                   <p>
-                    Age: <span className="ml-[30px]">{donorInfo.age}</span>{" "}
+                    Age:{" "}
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.age}
+                    </span>
                   </p>
                 </div>
                 <div className="flex flex-col justify-between">
                   <p>
-                    Sex: <span className="ml-[30px]">{donorInfo.sex}</span>
+                    Sex:{" "}
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.sex}
+                    </span>
                   </p>
                   <p>
-                    Blood Acquisition Date:{" "}
-                    <span className="ml-[30px]">{donorInfo.acquiredDate}</span>
+                    Blood Acquisition Date:
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.acquiredDate}
+                    </span>
                   </p>
                   <p>
-                    Acquiring Practitioner:{" "}
-                    <span className="ml-[30px]">{donorInfo.practitioner}</span>
+                    Acquiring Practitioner:
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.practitioner}
+                    </span>
                   </p>
                   <p>
-                    Blood Group:{" "}
-                    <span className="ml-[30px]">{donorInfo.bloodGroup}</span>
+                    Blood Group:
+                    <span className="ml-[30px] font-normal">
+                      {donorInfo.bloodGroup}
+                    </span>
                   </p>
                 </div>
               </div>

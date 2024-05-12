@@ -15,7 +15,9 @@ async function getData(): Promise<DonorInfo[]> {
     // Fetch specific columns from the 'donor_info' table in Supabase
     const { data, error } = await supabase
       .from("todos")
-      .select("id, lastName, firstName, bloodGroup, acquiredDate");
+      .select(
+        "id, lastName, firstName, bloodGroup, acquiredDate, age, sex, middleName, practitionerName"
+      );
     if (error) {
       throw error;
     }
