@@ -16,6 +16,7 @@ export async function onSubmit(
     age,
     bloodGroup,
     practitionerName,
+    donorID,
   } = data;
   const supabase = createClient();
 
@@ -28,6 +29,7 @@ export async function onSubmit(
       age,
       practitionerName,
       bloodGroup,
+      donorID,
     });
     if (error) {
       throw error;
