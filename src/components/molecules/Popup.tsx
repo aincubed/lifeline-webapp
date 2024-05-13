@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { CircleUser } from "lucide-react";
 import { Card } from "../ui/card";
 
-// Modify InformationPopup to accept donor information as props
 export function InformationPopup({ donorInfo }) {
   return (
     <AlertDialog>
