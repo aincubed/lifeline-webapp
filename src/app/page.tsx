@@ -1,14 +1,15 @@
+<<<<<<< HEAD
 import { LocalDateTime } from "@/components/molecules/DateAndTime";
 import { DonorCountCard } from "@/components/molecules/DonorCountCard";
 import { RecentlyAdd } from "@/components/molecules/listDonor/RecentlyAdd";
 import { DonorInfo, columns } from "@/components/molecules/listDonor/column";
 import { Card, CardContent } from "@/components/ui/card";
+=======
+>>>>>>> 5124107c0b15e46920a469e72a4028cb016076f1
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import dateTime from "date-time";
-import { CalendarIcon, ChevronRight, SmilePlus } from "lucide-react";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import RetrieveResult from "./retrieveResult";
 
 export default async function Dashboard() {
   const cookieStore = cookies();
@@ -22,6 +23,7 @@ export default async function Dashboard() {
     return redirect("/login");
   }
 
+<<<<<<< HEAD
   async function getData(): Promise<DonorInfo[]> {
     try {
       // Fetch specific columns from the 'donor_info' table in Supabase
@@ -85,5 +87,12 @@ export default async function Dashboard() {
         </CardContent>
       </Card>
     </div>
+=======
+  return (
+    <>
+      {/* <Predict /> */}
+      <RetrieveResult />
+    </>
+>>>>>>> 5124107c0b15e46920a469e72a4028cb016076f1
   );
 }

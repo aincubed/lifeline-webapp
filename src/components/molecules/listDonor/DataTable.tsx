@@ -86,56 +86,61 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <Button variant="outline" className="ml-auto">
-          Export to CSV
-        </Button>
+        <div className="ml-auto flex items-center gap-x-2">
+          <div className="flex items-center py-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 max-w-sm">
+                Filter
+              </DropdownMenuTrigger>
+              <Link href="/NewDonor" className="ml-auto"></Link>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Select Blood Group</DropdownMenuLabel>
+                <DropdownMenuItem
+                  onClick={() =>
+                    table.getColumn("bloodGroup")?.setFilterValue("")
+                  }
+                >
+                  All
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() =>
+                    table.getColumn("bloodGroup")?.setFilterValue("A")
+                  }
+                >
+                  A
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    table.getColumn("bloodGroup")?.setFilterValue("B")
+                  }
+                >
+                  B
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    table.getColumn("bloodGroup")?.setFilterValue("AB")
+                  }
+                >
+                  AB
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    table.getColumn("bloodGroup")?.setFilterValue("O")
+                  }
+                >
+                  O
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          <Link href="/NewDonor">
+            <Button variant="outline">Add New Donor</Button>
+          </Link>
+        </div>
       </div>
 
       {/* Dropdown filter menu and Add New Donor button */}
-      <div className="flex items-center py-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant="outline" className="max-w-sm">
-              Filter based on Blood Group
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Select Blood Group</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("")}
-            >
-              All
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("A")}
-            >
-              A
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("B")}
-            >
-              B
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() =>
-                table.getColumn("bloodGroup")?.setFilterValue("AB")
-              }
-            >
-              AB
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("O")}
-            >
-              O
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <Button variant="outline" className="ml-auto">
-          <Link href="/NewDonor">Add New Donor</Link>
-        </Button>
-      </div>
 
       {/* Table component */}
 
