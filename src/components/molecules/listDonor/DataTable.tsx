@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -73,7 +74,6 @@ export function DataTable<TData, TValue>({
   // Rendering DataTable component
   return (
     <div>
-      {/* Filter input and export button */}
       <div className="flex items-center py-2">
         <Input
           placeholder="Filter based on donor's last name..."
@@ -85,112 +85,110 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <div className="ml-auto flex items-center gap-x-2">
-          <div className="flex items-center py-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 max-w-sm">
-                Filter
-              </DropdownMenuTrigger>
-              <Link href="/NewDonor" className="ml-auto"></Link>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>Select Blood Group</DropdownMenuLabel>
-                <DropdownMenuItem
-                  onClick={() =>
-                    table.getColumn("bloodGroup")?.setFilterValue("")
-                  }
-                >
-                  All
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() =>
-                    table.getColumn("bloodGroup")?.setFilterValue("A")
-                  }
-                >
-                  A
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() =>
-                    table.getColumn("bloodGroup")?.setFilterValue("B")
-                  }
-                >
-                  B
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() =>
-                    table.getColumn("bloodGroup")?.setFilterValue("AB")
-                  }
-                >
-                  AB
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() =>
-                    table.getColumn("bloodGroup")?.setFilterValue("O")
-                  }
-                >
-                  O
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <Link href="/NewDonor">
-            <Button variant="outline">Add New Donor</Button>
-          </Link>
-        </div>
+        <Button variant="outline" className="ml-auto">
+          Export to CSV
+        </Button>
       </div>
 
       {/* Dropdown filter menu and Add New Donor button */}
+      <div className="flex items-center py-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button variant="outline" className="max-w-sm">
+              Filter based on Blood Group
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Select Blood Group</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("")}
+            >
+              All
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("A")}
+            >
+              A
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("B")}
+            >
+              B
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                table.getColumn("bloodGroup")?.setFilterValue("AB")
+              }
+            >
+              AB
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => table.getColumn("bloodGroup")?.setFilterValue("O")}
+            >
+              O
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <Button variant="outline" className="ml-auto">
+          <Link href="/NewDonor">Add New Donor</Link>
+        </Button>
+      </div>
 
       {/* Table component */}
+
       <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
-                    </TableHead>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
+        <ScrollArea className="h-[55vh]">
+          <Table>
+            <TableHeader className="sticky top-0 bg-white">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                      </TableHead>
+                    );
+                  })}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </ScrollArea>
       </div>
 
       {/* Pagination and row selection info */}

@@ -15,7 +15,7 @@ export default function RetrieveResult() {
   return (
     <>
       <Predict result={receiveDataFromChild} />
-      {/* <UpdateBloodGroup /> */}  
+      {/* <UpdateBloodGroup /> */}
       <h1>RECEIVED: {result}</h1>
     </>
   );

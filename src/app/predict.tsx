@@ -70,7 +70,7 @@ export default function Predict({ result }: any) {
     const tensor = new Tensor(
       "float32",
       new Float32Array(MODEL_SHAPES.reduce((a, b) => a * b)),
-      MODEL_SHAPES,
+      MODEL_SHAPES
     );
     await yolov8.run({ images: tensor });
 
@@ -113,22 +113,22 @@ export default function Predict({ result }: any) {
               handleData();
             }}
             className={clsx(
-              "w-1/4 py-2 text-[14px] rounded text-black transition-all mb-2",
+              "mb-2 w-1/4 rounded py-2 text-[14px] text-black transition-all",
               {
-                "bg-red-600 text-slate-300 bg-slate-100 pointer-events-none":
+                "bg-red-600 pointer-events-none bg-slate-100 text-slate-300":
                   !session,
               },
               {
-                "bg-white text-black pointer-events-auto cursor-pointer":
+                "pointer-events-auto cursor-pointer bg-white text-black":
                   session,
-              },
+              }
             )}
           >
             {!session ? "Loading" : "Screen Blood"}
           </Button>
         </div>
         <input
-          className="p-2 my-5 border border-gray-300 rounded-md w-full"
+          className="my-5 w-full rounded-md border border-gray-300 p-2"
           type="text"
           value={userInput}
           onChange={handleChange}
@@ -139,7 +139,7 @@ export default function Predict({ result }: any) {
             <div className="flex">
               <ImagePreview userInput={userInput} />
               {detectionResult && (
-                <div className="pl-5 text-[18px] w-full">
+                <div className="w-full pl-5 text-[18px]">
                   <p>Result:</p>
                   <div className="flex">
                     <Droplet className="text-red" />
@@ -150,10 +150,10 @@ export default function Predict({ result }: any) {
             </div>
           ) : (
             <div className="flex">
-              <Skeleton className="w-[640px] h-[360px]" />
+              <Skeleton className="h-[360px] w-[640px]" />
               <div>
-                <Skeleton className="ml-5 mb-2 w-[120px] h-[25px]" />
-                <Skeleton className="ml-5 w-[120px] h-[25px]" />
+                <Skeleton className="mb-2 ml-5 h-[25px] w-[120px]" />
+                <Skeleton className="ml-5 h-[25px] w-[120px]" />
               </div>
             </div>
           )}
