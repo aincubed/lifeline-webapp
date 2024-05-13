@@ -109,7 +109,7 @@ export const columns: ColumnDef<DonorInfo>[] = [
       );
     },
   },
-  // Column for actions
+
   {
     id: "actions",
     cell: ({ row }) => {

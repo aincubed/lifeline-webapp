@@ -40,7 +40,6 @@ export const DonorCountCard: React.FC<DonorCountCardProps> = () => {
   }, []);
   return (
     <>
-<<<<<<< HEAD
       {Object.entries(bloodGroupCounts).map(([bloodGroup, count]) => (
         <Link href="/" key={bloodGroup}>
           <Card className="border-lightGrey transition-all ease-in-out hover:border-grey">
@@ -56,55 +55,6 @@ export const DonorCountCard: React.FC<DonorCountCardProps> = () => {
           </Card>
         </Link>
       ))}
-=======
-      <Link href="/">
-        <Card className="border-lightGrey hover:border-grey transition-all ease-in-out">
-          <CardContent className="flex flex-col items-center p-10 gap-y-2">
-            <div className="text-3xl text-red rounded-md font-bold items-center justify-center flex h-[70px] w-[70px] bg-lightGrey">
-              A
-            </div>
-            Donors
-            <p className="bg-red rounded-xl text-white text-sm px-5">10</p>
-          </CardContent>
-        </Card>
-      </Link>
-
-      <Link href="/">
-        <Card className="border-lightGrey hover:border-grey transition-all ease-in-out">
-          <CardContent className="flex flex-col items-center p-10 gap-y-2">
-            <div className="text-3xl text-red rounded-md font-bold items-center justify-center flex h-[70px] w-[70px] bg-lightGrey">
-              B
-            </div>
-            Donors
-            <p className="bg-red rounded-xl text-white text-sm px-5">14</p>
-          </CardContent>
-        </Card>
-      </Link>
-
-      <Link href="/">
-        <Card className="border-lightGrey hover:border-grey transition-all ease-in-out">
-          <CardContent className="flex flex-col items-center p-10 gap-y-2">
-            <div className="text-3xl text-red rounded-md font-bold items-center justify-center flex h-[70px] w-[70px] bg-lightGrey">
-              AB
-            </div>
-            Donors
-            <p className="bg-red rounded-xl text-white text-sm px-5">7</p>
-          </CardContent>
-        </Card>
-      </Link>
-
-      <Link href="/">
-        <Card className="border-lightGrey hover:border-grey transition-all ease-in-out">
-          <CardContent className="flex flex-col items-center p-10 gap-y-2">
-            <div className="text-3xl text-red rounded-md font-bold items-center justify-center flex h-[70px] w-[70px] bg-lightGrey">
-              O
-            </div>
-            Donors
-            <p className="bg-red rounded-xl text-white text-sm px-5">25</p>
-          </CardContent>
-        </Card>
-      </Link>
->>>>>>> 5124107c0b15e46920a469e72a4028cb016076f1
     </>
   );
 };
