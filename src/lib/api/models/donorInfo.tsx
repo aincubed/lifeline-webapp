@@ -20,6 +20,7 @@ export const donorInfoSchema = z.object({
   bloodGroup: z.enum(["A", "B", "AB", "O", "undefined"], {
     required_error: "Please select your gender on birth",
   }),
+  donorID: z.string(),
 });
 
 export type DonorInfo = z.infer<typeof donorInfoSchema>;

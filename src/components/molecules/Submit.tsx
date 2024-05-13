@@ -2,12 +2,11 @@
 
 import { donorInfoSchema } from "@/lib/api/models/donorInfo";
 import { createClient } from "@/utils/supabase/client";
-import { redirect } from "next/navigation";
 
 import { z } from "zod";
 
 export async function onSubmit(
-  data: z.infer<typeof donorInfoSchema>
+  data: z.infer<typeof donorInfoSchema>,
 ): Promise<void> {
   const {
     lastName,
@@ -17,6 +16,7 @@ export async function onSubmit(
     age,
     bloodGroup,
     practitionerName,
+    donorID,
   } = data;
   const supabase = createClient();
 
@@ -29,11 +29,11 @@ export async function onSubmit(
       age,
       practitionerName,
       bloodGroup,
+      donorID,
     });
     if (error) {
       throw error;
     }
-    redirect("/NewDonor");
   } catch (error) {
     console.log("Error occurred", { error });
   }

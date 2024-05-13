@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { DataTable } from "../../components/molecules/listDonor/DataTable";
 
 // Importing DonorInfo type and columns definition from listDonor directory
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DonorInfo,
   columns,
@@ -34,10 +35,12 @@ export default async function DemoPage() {
 
   // Rendering DemoPage component
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-medium mb-5">Donor Directory</h1>
-      {/* Rendering DataTable component with columns and data */}
-      <DataTable columns={columns} data={data} />
-    </div>
+    <Card className="mt-4 border-lightGrey px-2 py-10 transition-all ease-in-out hover:border-grey hover:border-opacity-40">
+      <CardContent>
+        <h1 className="text-xl font-medium">Donor Directory</h1>
+        {/* Rendering DataTable component with columns and data */}
+        <DataTable columns={columns} data={data} />
+      </CardContent>
+    </Card>
   );
 }
