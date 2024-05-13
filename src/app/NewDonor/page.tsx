@@ -65,7 +65,7 @@ export default function NewDonor() {
       <Card className="mt-4 border-lightGrey px-2 py-10 transition-all ease-in-out hover:border-grey hover:border-opacity-40">
         <CardContent>
           <div className="flex justify-between">
-            <h1 className="text-xl font-medium mb-5">Donor Form</h1>
+            <h1 className="mb-5 text-xl font-medium">Donor Form</h1>
             <p className="text-neutral-300">Donor ID: {dataFromChild}</p>
           </div>
           <form onSubmit={handleSubmit(submitToServer)} className="space-y-4">
@@ -81,7 +81,7 @@ export default function NewDonor() {
                   type="text"
                   id="firstName"
                   {...register("firstName", { required: true })}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2"
                 />
                 {errors.firstName && (
                   <span className="text-red-500 text-sm">
@@ -100,7 +100,7 @@ export default function NewDonor() {
                   type="text"
                   id="middleName"
                   {...register("middleName", { required: false })}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2"
                 />
                 {errors.middleName && (
                   <span className="text-red-500 text-sm">
@@ -119,7 +119,7 @@ export default function NewDonor() {
                   type="text"
                   id="lastName"
                   {...register("lastName", { required: true })}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2"
                 />
                 {errors.lastName && (
                   <span className="text-red-500 text-sm">
@@ -140,7 +140,7 @@ export default function NewDonor() {
                   type="number"
                   id="age"
                   {...register("age", { required: true })}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2"
                 />
                 {errors.age && (
                   <span className="text-red-500 text-sm">
@@ -158,7 +158,7 @@ export default function NewDonor() {
                 <select
                   id="sex"
                   {...register("sex", { required: true })}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2"
                 >
                   <option value="">Select Sex</option>
                   {Object.values(Gender).map((value) => (
@@ -183,7 +183,7 @@ export default function NewDonor() {
                 <select
                   id="bloodGroup"
                   {...register("bloodGroup", { required: true })}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2"
                 >
                   <option value="">Select Blood Group</option>
                   {Object.values(BloodGroup).map((value) => (
@@ -210,7 +210,7 @@ export default function NewDonor() {
                 type="text"
                 id="practitionerName"
                 {...register("practitionerName", { required: true })}
-                className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                className="mt-1 w-full rounded-md border border-gray-300 p-2"
               />
               {errors.practitionerName && (
                 <span className="text-red-500 text-sm">
@@ -222,7 +222,7 @@ export default function NewDonor() {
             <div>
               <button
                 type="submit"
-                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
+                className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
               >
                 Submit
               </button>
@@ -231,27 +231,15 @@ export default function NewDonor() {
         </CardContent>
       </Card>
       {submittedData && (
-<<<<<<< HEAD
-        <div className="container mx-auto">
-          <Alert className="mb-5">
-            <AlertTitle className="pb-5">
-              Please review the following data before proceeding:
-            </AlertTitle>
-            <AlertDescription>
-              <div className="flex gap-20 text-[17px]">
-                <div className="">
-                  <div className="flex gap-x-4">
-=======
         <>
           <Card className="mt-5 border-lightGrey px-2 py-10 transition-all ease-in-out hover:border-grey hover:border-opacity-40">
             <CardContent>
-              <h1 className="text-xl font-medium pb-4">
+              <h1 className="pb-4 text-xl font-medium">
                 Please review the following details before proceeding:
               </h1>
               <div className="flex flex-row  gap-x-10 pb-4">
                 <div className="flex gap-x-4">
                   <div className="leading-loose">
->>>>>>> 5124107c0b15e46920a469e72a4028cb016076f1
                     <p>First Name:</p>
                     <p>Middle Name:</p>
                     <p>Last Name:</p>
@@ -301,178 +289,3 @@ export default function NewDonor() {
     </div>
   );
 }
-<<<<<<< HEAD
-
-type MyFormProps = {
-  onSubmit: (data: FormData) => void;
-  register: any;
-  handleSubmit: any;
-  errors: any;
-};
-
-function MyForm({ onSubmit, register, handleSubmit, errors }: MyFormProps) {
-  return (
-    <div className="container mx-auto py-10">
-      <h1 className="mb-5 text-3xl font-medium">Donor Directory</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex flex-grow gap-x-3">
-          <div className="grow">
-            <label
-              htmlFor="firstName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              First Name:
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              {...register("firstName", { required: true })}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2"
-            />
-            {errors.firstName && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-          <div className="grow">
-            <label
-              htmlFor="middleName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Middle Name:
-            </label>
-            <input
-              type="text"
-              id="middleName"
-              {...register("middleName", { required: true })}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2"
-            />
-            {errors.middleName && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-          <div className="grow">
-            <label
-              htmlFor="lastName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Last Name:
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              {...register("lastName", { required: true })}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2"
-            />
-            {errors.lastName && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-        </div>
-        <div className="flex flex-grow gap-x-3">
-          <div className="grow">
-            <label
-              htmlFor="age"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Age:
-            </label>
-            <input
-              type="number"
-              id="age"
-              {...register("age", { required: true })}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2"
-            />
-            {errors.age && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-          <div className="grow">
-            <label
-              htmlFor="sex"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Sex:
-            </label>
-            <select
-              id="sex"
-              {...register("sex", { required: true })}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2"
-            >
-              <option value="">Select Sex</option>
-              {Object.values(Gender).map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-            {errors.sex && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-          <div className="grow">
-            <label
-              htmlFor="bloodGroup"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Blood Group:
-            </label>
-            <select
-              id="bloodGroup"
-              {...register("bloodGroup", { required: true })}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2"
-            >
-              <option value="">Select Blood Group</option>
-              {Object.values(BloodGroup).map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-            {errors.bloodGroup && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-        </div>
-        <div>
-          <label
-            htmlFor="practitionerName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Practitioner Name:
-          </label>
-          <input
-            type="text"
-            id="practitionerName"
-            {...register("practitionerName", { required: true })}
-            className="mt-1 w-full rounded-md border border-gray-300 p-2"
-          />
-          {errors.practitionerName && (
-            <span className="text-red-500 text-sm">This field is required</span>
-          )}
-        </div>
-        <div>
-          <button
-            type="submit"
-            className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-}
-=======
->>>>>>> 5124107c0b15e46920a469e72a4028cb016076f1
